@@ -41,7 +41,23 @@ public class TowersOfHanoi {
         // 1) solve(n - 1, from, to, aux, moves);
         // 2) moves.add(from + " -> " + to);
         // 3) solve(n - 1, aux, from, to, moves);
+        if (n == 0) {
+            return;
+        }
+
+        // Step 1: Move n-1 smaller disks from source (A) to auxiliary (B)
+        // (C) becomes the new aux,and aux (B) becomes the new destination
+        solve(n-1, from, to, aux, moves);
+
+        // Step 2: Move the largest disk (nth disk) from source (A) to destination (C)
+        // This is always a direct move from source to destination
+        moves.add(from + " -> " + to);
+
+        // Step 3: Move n-1 smaller disks from aux (B) to destination (C)
+        // Now source (A) becomes the new aux, and aux (B) becomes the new source
+        solve(n-1, aux, from, to, moves);
     }
+
 }
 
 
